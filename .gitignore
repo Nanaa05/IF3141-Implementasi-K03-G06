@@ -19,3 +19,12 @@ __pycache__/
 # IDE / Editor
 .vscode/
 .idea/
+
+*~
+\#*\#
+*.elc
+auto-save-list
+tramp
+.\#*
+
+**/cats_odoo/
