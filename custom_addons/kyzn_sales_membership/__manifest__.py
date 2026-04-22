@@ -11,13 +11,6 @@
         'security/kyzn_groups.xml',
         'security/ir.model.access.csv',
         'security/kyzn_record_rules.xml',
-        'views/kyzn_menus.xml',
-        'views/kyzn_trees.xml',
-        'views/kyzn_forms.xml',
-        'views/sale_order_views.xml',
-        'views/product_views.xml',
-        'views/report_views.xml',
-        'views/menus.xml',
         'demo/demo.xml',
 
         'views/report_graph.xml',

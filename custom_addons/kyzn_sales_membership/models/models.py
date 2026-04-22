@@ -167,7 +167,7 @@ class SaleOrder(models.Model):
         ],
         string='Status Validasi',
         compute='_compute_status_validasi',
-        store=False,
+        store=True,
     )
     
     validation_ids = fields.One2many(
