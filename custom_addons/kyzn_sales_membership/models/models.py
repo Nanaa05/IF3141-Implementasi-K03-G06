@@ -141,6 +141,11 @@ class SaleOrder(models.Model):
         tracking=True,
     )
 
+    is_active = fields.Boolean(
+        string='Is Active Membership',
+        compute='_compute_is_active',
+    )
+    
     follow_up_1_date = fields.Date(
         string='Tanggal Follow Up Pertama',
         compute='_compute_follow_up_dates',
@@ -208,6 +213,17 @@ class SaleOrder(models.Model):
                 duration_days = rec.membership_product_id.product_tmpl_id.membership_duration_days or 0
                 if duration_days > 0:
                     rec.tanggal_expiry = rec.tanggal_mulai + relativedelta(days=duration_days)
+
+    @api.depends('tanggal_mulai', 'tanggal_expiry')
+    def _compute_is_active(self):
+        today = fields.Date.today()
+        for rec in self:
+            rec.is_active = bool(
+                rec.tanggal_mulai
+                and rec.tanggal_expiry
+                and rec.tanggal_mulai <= today <= rec.tanggal_expiry
+            )
+    
 
     @api.depends('tanggal_pembayaran', 'jenis_transaksi')
     def _compute_follow_up_dates(self):
