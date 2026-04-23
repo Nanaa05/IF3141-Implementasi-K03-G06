@@ -13,6 +13,12 @@
         'security/kyzn_record_rules.xml',
         'demo/demo.xml',
 
+        'views/validation_tree.xml',
+        'views/validation_form.xml',
+        'views/validation_search.xml',
+        'views/validation_menu.xml',
+        'views/sale_order_form.xml',
+
         'views/report_graph.xml',
         'views/report_pivot.xml',
         'views/report_search.xml',

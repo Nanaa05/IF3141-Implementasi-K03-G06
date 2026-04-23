@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_validation_search" model="ir.ui.view">
+        <field name="name">sale.order.validation.search</field>
+        <field name="model">sale.order.validation</field>
+        <field name="arch" type="xml">
+            <search string="Cari Riwayat Validasi">
+                <field name="sale_order_id" string="Sales Order"/>
+                <field name="sales_admin_id" string="Sales Admin"/>
+                <field name="catatan_koreksi" string="Catatan Koreksi"/>
+                <filter name="filter_open" string="Open"
+                        domain="[('status_validasi', '=', 'open')]"/>
+                <filter name="filter_resolved" string="Resolved"
+                        domain="[('status_validasi', '=', 'resolved')]"/>
+                <filter name="filter_confirmed" string="Confirmed"
+                        domain="[('status_validasi', '=', 'confirmed')]"/>
+                <separator/>
+                <group expand="0" string="Kelompokkan">
+                    <filter name="group_by_order" string="Sales Order"
+                            context="{'group_by': 'sale_order_id'}"/>
+                    <filter name="group_by_admin" string="Sales Admin"
+                            context="{'group_by': 'sales_admin_id'}"/>
+                    <filter name="group_by_status" string="Status"
+                            context="{'group_by': 'status_validasi'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>
