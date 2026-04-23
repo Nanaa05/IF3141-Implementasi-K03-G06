@@ -18,7 +18,6 @@ services:
       --db_user=odoo 
       --db_password=password 
       -i base
-      --load-language=en_US
       --without-demo=all
 
   db:

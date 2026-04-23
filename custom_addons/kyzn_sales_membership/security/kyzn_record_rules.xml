@@ -78,7 +78,7 @@
         <record id="rule_product_exec_service_only" model="ir.rule">
             <field name="name">Sales Executive: Hanya Produk Tipe Service (Membership)</field>
             <field name="model_id" ref="product.model_product_template"/>
-            <field name="domain_force">[('is_membership', '=', True)]</field>
+            <field name="domain_force">[('detailed_type', '=', 'service')]</field>
             <field name="groups" eval="[(4, ref('kyzn_sales_membership.group_kyzn_sales_executive'))]"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
@@ -89,7 +89,7 @@
         <record id="rule_product_admin_service_only" model="ir.rule">
             <field name="name">Sales Admin: Hanya Produk Tipe Service (Membership)</field>
             <field name="model_id" ref="product.model_product_template"/>
-            <field name="domain_force">[('is_membership', '=', True)]</field>
+            <field name="domain_force">[('detailed_type', '=', 'service')]</field>
             <field name="groups" eval="[(4, ref('kyzn_sales_membership.group_kyzn_sales_admin'))]"/>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
