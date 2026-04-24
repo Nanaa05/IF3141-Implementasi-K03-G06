@@ -18,6 +18,11 @@
         'views/report_search.xml',
         'views/report_tree.xml',
         'views/report_menu.xml',
+
+        'views/sale_order_form.xml',
+        'views/sale_order_tree.xml',
+        'views/sale_order_search.xml',
+        'views/sale_order_menu.xml',
     ],
     'installable': True,
     'application': True,

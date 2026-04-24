@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_kyzn_sales_order_main" model="ir.actions.act_window">
+        <field name="name">Sales Membership</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="view_sale_order_kyzn_search"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Belum ada data penjualan membership.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_kyzn_sales_root"
+              name="KYZN Sales"
+              sequence="10"/>
+
+    <menuitem id="menu_kyzn_order_list"
+              name="Orders"
+              parent="menu_kyzn_sales_root"
+              action="action_kyzn_sales_order_main"
+              sequence="10"/>
+</odoo>
