@@ -18,6 +18,12 @@
         'views/report_search.xml',
         'views/report_tree.xml',
         'views/report_menu.xml',
+
+        'views/report_graph.xml',
+        'views/report_pivot.xml',
+        'views/report_search.xml',
+        'views/report_tree.xml',
+        'views/report_menu.xml',
     ],
     'installable': True,
     'application': True,
