@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_validation_form" model="ir.ui.view">
+        <field name="name">sale.order.validation.form</field>
+        <field name="model">sale.order.validation</field>
+        <field name="arch" type="xml">
+            <form string="Record Validasi">
+                <header>
+                    <field name="status_validasi" widget="statusbar"
+                           statusbar_visible="open,resolved,confirmed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Info Utama">
+                            <field name="sale_order_id" readonly="1"/>
+                            <field name="sales_admin_id" readonly="1"/>
+                            <field name="create_date" string="Dibuat" readonly="1"/>
+                        </group>
+                        <group string="Status">
+                            <field name="status_validasi"/>
+                        </group>
+                    </group>
+                    <group string="Catatan Koreksi">
+                        <field name="catatan_koreksi" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

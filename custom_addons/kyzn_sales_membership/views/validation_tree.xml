@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_validation_tree" model="ir.ui.view">
+        <field name="name">sale.order.validation.tree</field>
+        <field name="model">sale.order.validation</field>
+        <field name="arch" type="xml">
+            <list string="Riwayat Validasi" default_order="create_date desc">
+                <field name="sale_order_id"/>
+                <field name="sales_admin_id"/>
+                <field name="status_validasi"
+                       decoration-danger="status_validasi == 'open'"
+                       decoration-warning="status_validasi == 'resolved'"
+                       decoration-success="status_validasi == 'confirmed'"/>
+                <field name="catatan_koreksi"/>
+                <field name="create_date" string="Dibuat"/>
+            </list>
+        </field>
+    </record>
+</odoo>

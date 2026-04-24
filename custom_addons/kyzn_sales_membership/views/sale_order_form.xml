@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_form_kyzn_validation" model="ir.ui.view">
+        <field name="name">sale.order.form.kyzn.validation</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Tambah status validasi di statusbar -->
+            <xpath expr="//header/field[@name='state']" position="after">
+                <field name="status_validasi" widget="statusbar"
+                       statusbar_visible="to_validate,need_revision,validated"/>
+            </xpath>
+
+            <!-- Tambah tombol aksi validasi di header -->
+            <xpath expr="//header/button[@name='action_confirm']" position="before">
+                <button name="action_submit_validation"
+                        string="Submit Validasi"
+                        type="object"
+                        class="btn-primary"
+                        invisible="status_validasi != 'need_revision'"
+                        groups="kyzn_sales_membership.group_kyzn_sales_executive"/>
+                <button name="action_validate"
+                        string="Validasi"
+                        type="object"
+                        class="btn-success"
+                        invisible="status_validasi != 'to_validate'"
+                        groups="kyzn_sales_membership.group_kyzn_sales_admin"/>
+                <button name="action_need_revision"
+                        string="Need Revision"
+                        type="object"
+                        class="btn-warning"
+                        invisible="status_validasi != 'to_validate'"
+                        groups="kyzn_sales_membership.group_kyzn_sales_admin"/>
+            </xpath>
+
+            <!-- Tambah tab Riwayat Validasi di notebook -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Riwayat Validasi" name="page_validation">
+                    <field name="validation_ids" readonly="1">
+                        <list string="Riwayat Validasi" default_order="create_date desc">
+                            <field name="create_date" string="Tanggal"/>
+                            <field name="sales_admin_id"/>
+                            <field name="status_validasi"
+                                   decoration-danger="status_validasi == 'open'"
+                                   decoration-warning="status_validasi == 'resolved'"
+                                   decoration-success="status_validasi == 'confirmed'"/>
+                            <field name="catatan_koreksi"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Wizard: Form Need Revision -->
+    <record id="view_wizard_need_revision_form" model="ir.ui.view">
+        <field name="name">kyzn.wizard.need.revision.form</field>
+        <field name="model">kyzn.wizard.need.revision</field>
+        <field name="arch" type="xml">
+            <form string="Need Revision">
+                <sheet>
+                    <group>
+                        <field name="sale_order_id" readonly="1"/>
+                        <field name="catatan_koreksi"
+                               placeholder="Tulis catatan koreksi untuk Sales Executive..."/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_confirm"
+                            string="Konfirmasi"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Batal" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

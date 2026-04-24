@@ -176,19 +176,18 @@ class SaleOrder(models.Model):
         string='Riwayat Validasi',
     )
 
-    @api.depends('validation_ids.status_validasi')
+    @api.depends('validation_ids', 'validation_ids.status_validasi')
     def _compute_status_validasi(self):
         for rec in self:
-            if not rec.validation_ids:
-                rec.status_validasi = 'to_validate'
-                continue
-
             statuses = rec.validation_ids.mapped('status_validasi')
-
             if 'open' in statuses:
                 rec.status_validasi = 'need_revision'
-            else:
+            elif 'resolved' in statuses:
+                rec.status_validasi = 'to_validate'
+            elif 'confirmed' in statuses:
                 rec.status_validasi = 'validated'
+            else:
+                rec.status_validasi = 'to_validate'
     
     @api.onchange('membership_type_id')
     def _onchange_membership_type_id(self):
@@ -253,9 +252,11 @@ class SaleOrder(models.Model):
 
     def action_submit_validation(self):
         for rec in self:
-            rec.message_post(
-                body='Sales Order diajukan untuk validasi.'
+            open_records = rec.validation_ids.filtered(
+                lambda v: v.status_validasi == 'open'
             )
+            open_records.write({'status_validasi': 'resolved'})
+            rec.message_post(body='Sales Order diajukan ulang untuk validasi.')
 
     def action_validate(self):
         for rec in self:
@@ -264,20 +265,33 @@ class SaleOrder(models.Model):
             if not rec.membership_type_id:
                 raise ValidationError('Membership Type wajib diisi sebelum validasi.')
 
-            self.env['sale.order.validation'].create({
-                'sale_order_id': rec.id,
-                'sales_admin_id': self.env.user.id,
-                'status_validasi': 'confirmed',
-            })
+            resolved_records = rec.validation_ids.filtered(
+                lambda v: v.status_validasi == 'resolved'
+            )
+            if resolved_records:
+                resolved_records.write({'status_validasi': 'confirmed'})
+            else:
+                self.env['sale.order.validation'].create({
+                    'sale_order_id': rec.id,
+                    'sales_admin_id': self.env.user.id,
+                    'status_validasi': 'confirmed',
+                })
 
             if rec.partner_id and not rec.partner_id.join_date:
                 rec.partner_id.join_date = rec.tanggal_mulai or rec.tanggal_pembayaran
-            
+
     def action_need_revision(self):
-        for rec in self:
-            raise ValidationError(
-                'Buat record baru pada Riwayat Validasi dengan status Open dan isi catatan koreksi.'
-            )
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Tandai Need Revision',
+            'res_model': 'kyzn.wizard.need.revision',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_sale_order_id': self.id,
+            },
+        }
                 
     def action_mark_follow_up_1_done(self):
         for rec in self:
