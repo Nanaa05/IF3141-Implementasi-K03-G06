@@ -8,6 +8,10 @@
         <record id="base.main_company" model="res.company">
             <field name="currency_id" ref="base.IDR"/>
         </record>
+	<record id="kyzn_pricelist_idr" model="product.pricelist">
+            <field name="name">Pricelist KYZN IDR</field>
+            <field name="currency_id" ref="base.IDR"/>
+        </record>
         <!-- USERS -->
         <record id="user_sales_exec_kng" model="res.users">
             <field name="name">Sales Executive Kuningan</field>
@@ -191,6 +195,7 @@
         <record id="so_kyzn_001" model="sale.order">
             <field name="name">SO-KYZN-001</field>
             <field name="partner_id" ref="partner_member_andi"/>
+            <field name="pricelist_id" ref="kyzn_pricelist_idr"/>
             <field name="user_id" ref="user_sales_exec_kng"/>
             <field name="membership_type_id" ref="product_membership_adult_month"/>
             <field name="jenis_transaksi">baru</field>
@@ -211,6 +216,7 @@
         <record id="so_kyzn_002" model="sale.order">
             <field name="name">SO-KYZN-002</field>
             <field name="partner_id" ref="partner_member_bunga"/>
+            <field name="pricelist_id" ref="kyzn_pricelist_idr"/>
             <field name="user_id" ref="user_sales_exec_bsd"/>
             <field name="membership_type_id" ref="product_membership_academy_month"/>
             <field name="jenis_transaksi">baru</field>
@@ -231,6 +237,7 @@
         <record id="so_kyzn_003" model="sale.order">
             <field name="name">SO-KYZN-003</field>
             <field name="partner_id" ref="partner_member_chandra"/>
+            <field name="pricelist_id" ref="kyzn_pricelist_idr"/>
             <field name="user_id" ref="user_sales_exec_kng"/>
             <field name="membership_type_id" ref="product_membership_adult_quarter"/>
             <field name="jenis_transaksi">renewal</field>
@@ -244,6 +251,7 @@
         <record id="so_kyzn_004" model="sale.order">
             <field name="name">SO-KYZN-004</field>
             <field name="partner_id" ref="partner_member_dewi"/>
+            <field name="pricelist_id" ref="kyzn_pricelist_idr"/>
             <field name="user_id" ref="user_sales_exec_pusat"/>
             <field name="membership_type_id" ref="product_membership_academy_quarter"/>
             <field name="jenis_transaksi">baru</field>
@@ -264,6 +272,7 @@
         <record id="so_kyzn_005" model="sale.order">
             <field name="name">SO-KYZN-005</field>
             <field name="partner_id" ref="partner_member_eko"/>
+            <field name="pricelist_id" ref="kyzn_pricelist_idr"/>
             <field name="user_id" ref="user_sales_exec_bsd"/>
             <field name="membership_type_id" ref="product_membership_adult_year"/>
             <field name="jenis_transaksi">baru</field>
@@ -284,6 +293,7 @@
         <record id="so_kyzn_006" model="sale.order">
             <field name="name">SO-KYZN-006</field>
             <field name="partner_id" ref="partner_member_farah"/>
+            <field name="pricelist_id" ref="kyzn_pricelist_idr"/>
             <field name="user_id" ref="user_sales_exec_kng"/>
             <field name="membership_type_id" ref="product_membership_academy_month"/>
             <field name="jenis_transaksi">baru</field>
@@ -304,6 +314,7 @@
         <record id="so_kyzn_007" model="sale.order">
             <field name="name">SO-KYZN-007</field>
             <field name="partner_id" ref="partner_member_gilang"/>
+            <field name="pricelist_id" ref="kyzn_pricelist_idr"/>
             <field name="user_id" ref="user_sales_exec_pusat"/>
             <field name="membership_type_id" ref="product_membership_adult_month"/>
             <field name="jenis_transaksi">renewal</field>
@@ -324,6 +335,7 @@
         <record id="so_kyzn_008" model="sale.order">
             <field name="name">SO-KYZN-008</field>
             <field name="partner_id" ref="partner_member_hana"/>
+            <field name="pricelist_id" ref="kyzn_pricelist_idr"/>
             <field name="user_id" ref="user_sales_exec_bsd"/>
             <field name="membership_type_id" ref="product_membership_academy_quarter"/>
             <field name="jenis_transaksi">baru</field>
