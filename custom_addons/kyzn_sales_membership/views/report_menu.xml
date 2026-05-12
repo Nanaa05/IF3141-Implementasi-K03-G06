@@ -12,6 +12,27 @@
         </field>
     </record>
 
+    <record id="action_kyzn_reporting_graph" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_sale_order_report_graph"/>
+        <field name="act_window_id" ref="action_kyzn_reporting"/>
+    </record>
+
+    <record id="action_kyzn_reporting_pivot" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="view_sale_order_report_pivot"/>
+        <field name="act_window_id" ref="action_kyzn_reporting"/>
+    </record>
+
+    <record id="action_kyzn_reporting_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_sale_order_report_tree"/>
+        <field name="act_window_id" ref="action_kyzn_reporting"/>
+    </record>
+
     <menuitem id="menu_kyzn_reporting_root"
               name="Reporting"
               parent="menu_kyzn_sales_root"

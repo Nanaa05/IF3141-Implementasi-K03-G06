@@ -12,6 +12,13 @@
         </field>
     </record>
 
+    <record id="action_kyzn_sales_order_main_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_sale_order_kyzn_tree"/>
+        <field name="act_window_id" ref="action_kyzn_sales_order_main"/>
+    </record>
+
     <menuitem id="menu_kyzn_order_list"
               name="Sales Orders"
               parent="menu_kyzn_sales_root"

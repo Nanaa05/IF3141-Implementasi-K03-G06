@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="0">
+	<record id="base.IDR" model="res.currency">
+            <field name="active" eval="True"/>
+        </record>
 
+        <record id="base.main_company" model="res.company">
+            <field name="currency_id" ref="base.IDR"/>
+        </record>
         <!-- USERS -->
         <record id="user_sales_exec_kng" model="res.users">
             <field name="name">Sales Executive Kuningan</field>
