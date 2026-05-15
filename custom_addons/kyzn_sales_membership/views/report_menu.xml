@@ -36,7 +36,8 @@
     <menuitem id="menu_kyzn_reporting_root"
               name="Reporting"
               parent="menu_kyzn_sales_root"
-              sequence="40"/>
+              sequence="40"
+	      groups="kyzn_sales_membership.group_kyzn_sales_head,kyzn_sales_membership.group_kyzn_finance_ar"/>
 
     <menuitem id="menu_kyzn_dashboard"
               name="Dashboard &amp; Analisis"

@@ -4,7 +4,7 @@
         <field name="name">sale.order.kyzn.tree</field>
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
-            <tree string="Daftar Penjualan Membership" decoration-info="status_validasi == 'to_validate'" decoration-warning="status_validasi == 'need_revision'" decoration-success="status_validasi == 'validated'">
+            <tree string="Daftar Penjualan Membership" export_xlsx="1" decoration-info="status_validasi == 'to_validate'" decoration-warning="status_validasi == 'need_revision'" decoration-success="status_validasi == 'validated'">
                 <field name="name" string="Nomor Order"/>
                 <field name="date_order" widget="date"/>
                 <field name="partner_id" string="Member"/>

@@ -1,40 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_sale_order_form_kyzn_validation" model="ir.ui.view">
-        <field name="name">sale.order.form.kyzn.validation</field>
+    <record id="view_order_form_inherit_kyzn" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.kyzn</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
 
-            <!-- Tambah status validasi di statusbar -->
             <xpath expr="//header/field[@name='state']" position="after">
                 <field name="status_validasi" widget="statusbar"
                        statusbar_visible="to_validate,need_revision,validated"/>
             </xpath>
 
-            <!-- Tambah tombol aksi validasi di header -->
             <xpath expr="//header/button[@name='action_confirm']" position="before">
-                <button name="action_submit_validation"
-                        string="Submit Validasi"
-                        type="object"
-                        class="btn-primary"
+                <button name="action_submit_validation" string="Submit Validasi" type="object" class="btn-primary"
                         invisible="status_validasi != 'need_revision'"
                         groups="kyzn_sales_membership.group_kyzn_sales_executive"/>
-                <button name="action_validate"
-                        string="Validasi"
-                        type="object"
-                        class="btn-success"
+                <button name="action_validate" string="Validasi" type="object" class="btn-success"
                         invisible="status_validasi != 'to_validate'"
                         groups="kyzn_sales_membership.group_kyzn_sales_admin"/>
-                <button name="action_need_revision"
-                        string="Need Revision"
-                        type="object"
-                        class="btn-warning"
+                <button name="action_need_revision" string="Need Revision" type="object" class="btn-warning"
                         invisible="status_validasi != 'to_validate'"
                         groups="kyzn_sales_membership.group_kyzn_sales_admin"/>
             </xpath>
 
-            <!-- Tambah tab Riwayat Validasi di notebook -->
+            <xpath expr="//group[@name='order_details']" position="after">
+                <group string="Informasi Membership &amp; Transaksi">
+                    <group>
+                        <field name="membership_type_id" options="{'no_create': True}"/>
+                        <field name="jenis_transaksi"/>
+                        <field name="tanggal_mulai"/>
+                        <field name="tanggal_expiry"/>
+                    </group>
+                    <group>
+                        <field name="metode_pembayaran"/>
+                        <field name="tanggal_pembayaran"/>
+                        <field name="nilai_pembayaran"/>
+                        <field name="status_validasi" readonly="1"/>
+                        <field name="follow_up_status"/> </group>
+                </group>
+            </xpath>
+
+            <xpath expr="//page[@name='order_lines']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
             <xpath expr="//notebook" position="inside">
                 <page string="Riwayat Validasi" name="page_validation">
                     <field name="validation_ids" readonly="1">
@@ -54,7 +63,6 @@
         </field>
     </record>
 
-    <!-- Wizard: Form Need Revision -->
     <record id="view_wizard_need_revision_form" model="ir.ui.view">
         <field name="name">kyzn.wizard.need.revision.form</field>
         <field name="model">kyzn.wizard.need.revision</field>
@@ -68,10 +76,7 @@
                     </group>
                 </sheet>
                 <footer>
-                    <button name="action_confirm"
-                            string="Konfirmasi"
-                            type="object"
-                            class="btn-primary"/>
+                    <button name="action_confirm" string="Konfirmasi" type="object" class="btn-primary"/>
                     <button string="Batal" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>

@@ -67,5 +67,6 @@
               name="Paket Membership"
               parent="menu_kyzn_sales_root"
               action="action_kyzn_membership_product"
-              sequence="30"/>
+              sequence="30"
+	      groups="kyzn_sales_membership.group_kyzn_sales_head,kyzn_sales_membership.group_kyzn_it_support"/>
 </odoo>

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="0">
-	<record id="base.IDR" model="res.currency">
+    <data noupdate="1">
+        <record id="base.IDR" model="res.currency">
             <field name="active" eval="True"/>
         </record>
 
         <record id="base.main_company" model="res.company">
             <field name="currency_id" ref="base.IDR"/>
         </record>
-	<record id="kyzn_pricelist_idr" model="product.pricelist">
+
+        <record id="kyzn_pricelist_idr" model="product.pricelist">
             <field name="name">Pricelist KYZN IDR</field>
             <field name="currency_id" ref="base.IDR"/>
         </record>
-        <!-- USERS -->
+
         <record id="user_sales_exec_kng" model="res.users">
             <field name="name">Sales Executive Kuningan</field>
             <field name="login">sales.kuningan@kyzn.demo</field>
@@ -76,7 +77,6 @@
             <field name="groups_id" eval="[(6, 0, [ref('base.group_user'), ref('kyzn_sales_membership.group_kyzn_it_support')])]"/>
         </record>
 
-        <!-- MEMBERS -->
         <record id="partner_member_andi" model="res.partner">
             <field name="name">Andi Saputra</field>
             <field name="email">andi.saputra@example.com</field>
@@ -145,7 +145,6 @@
             <field name="emergency_contact">Maya Permata - 081234560008</field>
         </record>
 
-        <!-- MEMBERSHIP PACKAGES -->
         <record id="product_membership_adult_month" model="product.template">
             <field name="name">Membership Adult - Bulanan</field>
             <field name="detailed_type">service</field>
@@ -191,7 +190,6 @@
             <field name="description_sale">Paket membership kelas adult selama 1 tahun. Harga Rp7.200.000.</field>
         </record>
 
-        <!-- SALES ORDERS -->
         <record id="so_kyzn_001" model="sale.order">
             <field name="name">SO-KYZN-001</field>
             <field name="partner_id" ref="partner_member_andi"/>
@@ -345,6 +343,5 @@
             <field name="nilai_pembayaran">2600000</field>
             <field name="follow_up_status">pending</field>
         </record>
-
     </data>
 </odoo>

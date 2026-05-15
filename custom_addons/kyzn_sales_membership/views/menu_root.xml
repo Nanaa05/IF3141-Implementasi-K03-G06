@@ -3,4 +3,17 @@
     <menuitem id="menu_kyzn_sales_root"
               name="KYZN Sales"
               sequence="1"/>
+
+    <menuitem id="menu_kyzn_configuration"
+              name="Configuration"
+              parent="menu_kyzn_sales_root"
+              sequence="100"
+              groups="kyzn_sales_membership.group_kyzn_it_support"/>
+
+    <menuitem id="menu_kyzn_settings"
+              name="Settings"
+              parent="menu_kyzn_configuration"
+              sequence="1"
+              action="base_setup.action_general_configuration"
+              groups="kyzn_sales_membership.group_kyzn_it_support"/>
 </odoo>

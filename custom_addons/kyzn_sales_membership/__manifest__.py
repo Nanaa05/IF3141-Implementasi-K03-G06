@@ -20,7 +20,6 @@
 
         'views/sales_order_tree.xml',
         'views/sales_order_search.xml',
-        'views/sales_order_form.xml',
         'views/sale_order_form.xml',
         'views/sales_order_menu.xml',
 
